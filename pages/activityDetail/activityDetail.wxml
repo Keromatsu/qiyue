@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="info-card">
+    <text class="info-title">{{activity.name}}</text>
+    <text class="info-item" wx:if="{{activity.location}}">📍 活动地点：{{activity.location}}</text>
+    <text class="info-item">⏰ 活动时间：{{formatEndTime}}</text>
+  </view>
+
+  <view class="participant-section">
+    <text class="section-title">参与人列表</text>
+    <view class="participant-list">
+      <view class="participant-item" wx:for="{{activity.participants}}" wx:key="openid">
+        <image class="participant-avatar" src="{{item.avatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+        <text class="participant-name">{{item.nickName || '微信用户'}}</text>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{!activity.participants || activity.participants.length === 0}}">
+      暂无参与人，快去分享邀请好友吧～
+    </view>
+  </view>
+
+  <view class="action-section">
+    <button 
+      class="action-btn join-btn {{isJoined ? 'cancel-btn' : ''}}"
+      bindtap="toggleJoin"
+    >
+      {{isJoined ? '取消参与' : '立即参与'}}
+    </button>
+    <!-- 🔴 修复：分享按钮添加open-type="share"，匹配小程序分享规范 -->
+    <button 
+      class="action-btn share-btn"
+      open-type="share"
+    >
+      分享活动
+    </button>
+    <button 
+      class="action-btn remind-btn"
+      wx:if="{{isCreator}}"
+      bindtap="sendManualReminder"
+    >
+      发送提醒
+    </button>
+  </view>
+</view>

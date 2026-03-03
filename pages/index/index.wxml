@@ -1,0 +1,89 @@
+<scroll-view class="page-scroll" scroll-y="true" bindscroll="onPageScroll" scroll-with-animation>
+  <!-- 【上半屏】特斯拉风格全屏场景轮播区 -->
+  <swiper 
+    class="scene-swiper" 
+    indicator-dots="{{false}}" 
+    bindchange="onSwiperChange" 
+    current="{{currentSceneIndex}}"
+    circular
+  >
+    <swiper-item wx:for="{{sceneList}}" wx:key="id" class="scene-item">
+      <image src="{{item.bgImage}}" class="scene-bg" mode="aspectFill"></image>
+      <view class="scene-header">
+        <text class="scene-title">{{item.title}}</text>
+        <text class="scene-subtitle">{{item.subtitle}}</text>
+        <text class="scene-link">了解更多</text>
+      </view>
+      <view class="stats-section">
+        <view class="stats-card" wx:for="{{item.stats}}" wx:key="label">
+          <text class="stats-number">{{item.number}}</text>
+          <text class="stats-label">{{item.label}}</text>
+        </view>
+      </view>
+      <view class="stats-note" wx:if="{{item.statsNote}}">*{{item.statsNote}}</view>
+      <view class="action-section">
+        <button class="btn primary" bindtap="handlePrimaryAction">
+          {{item.primaryBtnText}}
+        </button>
+        <button class="btn secondary" bindtap="handleSecondaryAction">
+          {{item.secondaryBtnText}}
+        </button>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 轮播分页器 -->
+  <view class="pagination" wx:if="{{showPagination}}">
+    <view 
+      wx:for="{{sceneList}}" 
+      wx:key="id" 
+      class="dot {{index === currentSceneIndex ? 'active' : ''}}"
+      bindtap="switchSceneByDot" 
+      data-index="{{index}}"
+    ></view>
+  </view>
+
+  <!-- 【下半屏】特斯拉风格全屏视频区 -->
+  <view class="video-section" id="video-section">
+    <video 
+      id="loop-video"
+      src="{{videoUrl}}"
+      class="loop-video"
+      loop="{{true}}"
+      autoplay="{{autoPlayVideo}}"
+      muted="{{true}}"
+      playsinline="{{true}}"
+      show-progress="{{false}}"
+      show-fullscreen-btn="{{false}}"
+      show-play-btn="{{false}}"
+      object-fit="cover"
+    ></video>
+    <view class="video-overlay">
+      <text class="video-title">体验七月</text>
+      <text class="video-subtitle">即刻开启协作之旅</text>
+    </view>
+    <view class="video-action">
+      <button class="btn primary" bindtap="goTemplateSelect">发起新活动</button>
+      <button class="btn secondary" bindtap="goMine">我的活动</button>
+    </view>
+  </view>
+
+  <!-- 补充内容区 -->
+  <view class="extra-content">
+    <text class="extra-title">为什么选择七月？</text>
+    <view class="feature-list">
+      <view class="feature-item">
+        <text class="feature-icon">✅</text>
+        <text class="feature-text">轻量化操作，10秒发起活动</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✅</text>
+        <text class="feature-text">熟人场景，无需注册登录</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✅</text>
+        <text class="feature-text">实时同步，信息不被淹没</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>

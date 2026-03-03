@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/templateSelect/templateSelect",
+    "pages/createActivity/createActivity",
+    "pages/activityDetail/activityDetail",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "七月",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于地图选点，方便填写活动地点"
+    }
+  },
+  "requiredPrivateInfos": ["chooseLocation"],
+  "sitemapLocation": "sitemap.json",
+  "cloud": true
+}

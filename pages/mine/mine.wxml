@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="tab-bar">
+    <view 
+      class="tab-item {{activeTab === 'created' ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="created"
+    >
+      我发起的
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'joined' ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="joined"
+    >
+      我参与的
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'ended' ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-tab="ended"
+    >
+      已结束
+    </view>
+  </view>
+
+  <view class="activity-list">
+    <view 
+      class="activity-item"
+      wx:for="{{activityList}}"
+      wx:key="_id"
+      bindtap="goDetail"
+      data-id="{{item._id}}"
+    >
+      <text class="activity-name">{{item.name}}</text>
+      <text class="activity-time">截止：{{formatTime(item.endTime)}}</text>
+      <text class="activity-type">{{typeMap[item.type]}}</text>
+    </view>
+    <view class="empty-tip" wx:if="{{!activityList.length}}">
+      {{emptyTip}}
+    </view>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+/* 全局样式重置 - 小程序全兼容版本 */
+page,
+view,
+text,
+button,
+input,
+picker,
+image,
+swiper,
+swiper-item,
+scroll-view {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+page {
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+}
+/* 重置button组件默认样式，彻底解决按钮不居中、偏移问题 */
+button {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+button::after {
+  border: none;
+  border-radius: 0;
+}
+/* 重置input/picker默认样式 */
+input, picker {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+/* 全局居中通用类 */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

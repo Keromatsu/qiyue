@@ -1,0 +1,119 @@
+page {
+  --primary-color: #0066cc;
+  --primary-bg: #f0f8ff;
+  --border-color: #dcdcdc;
+  --text-main: #171a20;
+  --text-secondary: #666;
+}
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding: 40rpx 30rpx 120rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.scene-header-wrapper {
+  width: 100%;
+  height: 360rpx;
+  margin: 20rpx 0 80rpx;
+  overflow: hidden;
+  border-radius: 12rpx;
+}
+.scene-header-img {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+.scene-header-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 28rpx;
+}
+.select-section {
+  width: 100%;
+}
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 400;
+  margin-bottom: 30rpx;
+}
+.scene-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 30rpx;
+}
+.scene-item {
+  width: 48%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid var(--border-color);
+  border-radius: 8rpx;
+  font-size: 34rpx;
+  color: var(--text-main);
+  font-weight: 400;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+.scene-item.active {
+  border-color: var(--primary-color);
+  border-width: 3rpx;
+  font-weight: 700;
+  background: var(--primary-bg);
+  color: var(--primary-color);
+  transform: scale(1.02);
+}
+.scene-icon {
+  font-size: 36rpx;
+  margin-bottom: 4rpx;
+}
+.scene-name {
+  font-size: 28rpx;
+}
+.action-footer {
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4rpx 12rpx rgba(0, 102, 204, 0.2);
+  transition: all 0.2s ease;
+}
+.submit-btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+.submit-btn::after {
+  border: none;
+  border-radius: 0;
+}

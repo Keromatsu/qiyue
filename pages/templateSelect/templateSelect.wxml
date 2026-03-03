@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="scene-header-wrapper">
+    <image 
+      src="{{currentTemplate.bgImage}}" 
+      class="scene-header-img" 
+      mode="aspectFill"
+      binderror="onImageError"
+      lazy-load
+      wx:if="{{currentTemplate.bgImage}}"
+    ></image>
+    <view class="scene-header-placeholder" wx:else>
+      <text>加载中...</text>
+    </view>
+  </view>
+  <view class="select-section">
+    <text class="section-title">活动场景</text>
+    <view class="scene-grid">
+      <view 
+        wx:for="{{templateList}}" 
+        wx:key="type"
+        class="scene-item {{item.type === currentType ? 'active' : ''}}"
+        bindtap="selectTemplate"
+        data-type="{{item.type}}"
+      >
+        <text class="scene-icon">{{item.icon}}</text>
+        <text class="scene-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="action-footer">
+    <button class="submit-btn" bindtap="goCreate">下一步</button>
+  </view>
+</view>

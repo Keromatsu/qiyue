@@ -1,0 +1,97 @@
+<view class="container">
+  <view class="mini-user-card" id="user-info-card">
+    <button class="mini-avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image class="mini-avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+    </button>
+    <input 
+      class="mini-nickname" 
+      type="nickname" 
+      placeholder="设置昵称"
+      value="{{userInfo.nickName}}"
+      bindblur="onNickNameBlur"
+    />
+  </view>
+  <form bindsubmit="submitForm">
+    <view class="form-item">
+      <view class="form-label">{{fieldConfig.title}}</view>
+      <input 
+        name="name" 
+        class="form-input" 
+        placeholder="请输入{{fieldConfig.titlePlaceholder}}"
+        value="{{formName}}"
+        bindinput="onNameInput"
+        required
+      />
+    </view>
+    <view class="form-item" wx:if="{{fieldConfig.showLocation}}">
+      <view class="form-label">{{fieldConfig.location}}</view>
+      <view class="location-picker" bindtap="chooseMapLocation">
+        <view class="location-text {{selectedLocation ? '' : 'location-placeholder'}}">
+          {{selectedLocation || fieldConfig.locationPlaceholder}}
+        </view>
+        <view class="location-arrow">></view>
+      </view>
+      <input name="location" style="display:none;" value="{{selectedLocation}}" />
+    </view>
+    <view class="form-item">
+      <view class="form-label">{{fieldConfig.timeLabel}}-日期</view>
+      <picker 
+        class="form-picker-wrap"
+        mode="date" 
+        value="{{selectedDate}}"
+        start="{{startDate}}"
+        bindchange="onDateChange"
+      >
+        <view class="form-picker">
+          {{selectedDate}}
+        </view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <view class="form-label">{{fieldConfig.timeLabel}}-时间</view>
+      <picker 
+        class="form-picker-wrap"
+        mode="time" 
+        value="{{selectedTime}}"
+        bindchange="onTimeChange"
+      >
+        <view class="form-picker">
+          {{selectedTime}}
+        </view>
+      </picker>
+    </view>
+    <view class="remind-section">
+      <view class="remind-top-row">
+        <switch 
+          name="remindEnabled" 
+          class="remind-switch"
+          bindchange="toggleRemind"
+          checked="{{remindEnabled}}"
+          color="#0066cc"
+        />
+        <view class="remind-label">开启活动提醒</view>
+      </view>
+      <picker 
+        class="form-picker-wrap"
+        mode="selector" 
+        range="{{remindOptions}}" 
+        range-key="name"
+        name="remindTime"
+        wx:if="{{remindEnabled}}"
+        bindchange="onRemindTimeChange"
+      >
+        <view class="form-picker remind-picker">
+          {{selectedRemind ? selectedRemind.name : '请选择提醒时间'}}
+        </view>
+      </picker>
+    </view>
+    <button 
+      form-type="submit" 
+      class="submit-btn" 
+      disabled="{{submitting}}"
+      catchtap="handleSubmitClick"
+    >
+      {{submitting ? '创建中...' : '创建' + fieldConfig.mainBtnText}}
+    </button>
+  </form>
+</view>
